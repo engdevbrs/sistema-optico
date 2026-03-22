@@ -174,6 +174,7 @@ async function sendConfirmationEmail(
       to: [to],
       subject: `Cita confirmada — ${fechaFormateada} a las ${hora} | Optikara`,
       html,
+      tracking: { clicks: false },
     }),
   })
 

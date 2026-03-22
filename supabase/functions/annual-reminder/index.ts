@@ -165,6 +165,7 @@ Deno.serve(async (req) => {
               to: [paciente.email],
               subject: `${subjectText} | Optikara`,
               html,
+              tracking: { clicks: false },
             }),
           })
           if (res.ok) { totalEnviados++; console.log(`[ANNUAL] ${daysBefore}d reminder sent to ${paciente.email}`) }

@@ -208,6 +208,7 @@ Deno.serve(async (req) => {
             to: [paciente.email],
             subject: `Recordatorio: tu cita es mañana a las ${cita.hora_inicio} | Optikara`,
             html,
+            tracking: { clicks: false },
           }),
         })
 

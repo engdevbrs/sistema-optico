@@ -362,6 +362,7 @@ Deno.serve(async (req) => {
             to: [paciente.email],
             subject,
             html,
+            tracking: { clicks: false },
           }),
         })
 

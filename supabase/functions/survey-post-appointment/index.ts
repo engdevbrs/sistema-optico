@@ -202,6 +202,7 @@ Deno.serve(async (req) => {
             to: [paciente.email],
             subject: `¿Cómo fue tu visita? Cuéntanos en 30 segundos | Optikara`,
             html,
+            tracking: { clicks: false },
           }),
         })
 
