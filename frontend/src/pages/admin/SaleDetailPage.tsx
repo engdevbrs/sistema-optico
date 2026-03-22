@@ -138,7 +138,7 @@ export default function SaleDetailPage() {
 
       <div className="grid md:grid-cols-3 gap-4">
         {/* Info cards */}
-        <div className="space-y-4">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-4">
           {/* Patient */}
           <div
             className="p-4 space-y-2"
@@ -238,62 +238,97 @@ export default function SaleDetailPage() {
             PRODUCTOS
           </h3>
 
-          <div className="overflow-x-auto">
-          <table className="w-full text-sm min-w-[500px]">
-            <thead>
-              <tr style={{ borderBottom: '1px solid var(--border)' }}>
-                {['Producto', 'P. Unit.', 'Cant.', 'Desc.', 'Subtotal'].map((h) => (
-                  <th
-                    key={h}
-                    className="text-left text-xs font-medium tracking-wider pb-2"
-                    style={{ color: 'var(--text-secondary)' }}
-                  >
-                    {h}
-                  </th>
+          {/* Desktop table */}
+          <div className="hidden sm:block overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                  {['Producto', 'P. Unit.', 'Cant.', 'Desc.', 'Subtotal'].map((h) => (
+                    <th
+                      key={h}
+                      className="text-left text-xs font-medium tracking-wider pb-2"
+                      style={{ color: 'var(--text-secondary)' }}
+                    >
+                      {h}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {sale.items?.map((item) => (
+                  <tr key={item.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                    <td className="py-3">
+                      <p className="font-medium" style={{ color: 'var(--text-primary)' }}>
+                        {item.producto?.nombre ?? '—'}
+                      </p>
+                      {item.producto?.sku && (
+                        <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{item.producto.sku}</p>
+                      )}
+                    </td>
+                    <td className="py-3" style={{ color: 'var(--text-primary)' }}>
+                      {formatCLP(item.precio_unitario)}
+                    </td>
+                    <td className="py-3" style={{ color: 'var(--text-primary)' }}>
+                      {item.cantidad}
+                    </td>
+                    <td className="py-3">
+                      {item.descuento_porcentaje > 0 ? (
+                        <span style={{ color: 'var(--status-success)' }}>
+                          -{item.descuento_porcentaje}%
+                          {item.regla_descuento && (
+                            <span className="text-xs block" style={{ color: 'var(--text-muted)' }}>
+                              {item.regla_descuento.nombre}
+                            </span>
+                          )}
+                        </span>
+                      ) : (
+                        <span style={{ color: 'var(--text-muted)' }}>—</span>
+                      )}
+                    </td>
+                    <td className="py-3 font-medium">
+                      <span style={{ color: 'var(--text-primary)' }}>{formatCLP(item.subtotal)}</span>
+                      <span className="block text-xs font-normal" style={{ color: 'var(--text-muted)' }}>
+                        neto {formatCLP(Math.round(item.subtotal / 1.19))} + IVA {formatCLP(item.subtotal - Math.round(item.subtotal / 1.19))}
+                      </span>
+                    </td>
+                  </tr>
                 ))}
-              </tr>
-            </thead>
-            <tbody>
-              {sale.items?.map((item) => (
-                <tr key={item.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                  <td className="py-3">
-                    <p className="font-medium" style={{ color: 'var(--text-primary)' }}>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile cards */}
+          <div className="sm:hidden space-y-3">
+            {sale.items?.map((item) => (
+              <div
+                key={item.id}
+                className="py-3"
+                style={{ borderBottom: '1px solid var(--border)' }}
+              >
+                <div className="flex justify-between items-start mb-1">
+                  <div>
+                    <p className="text-sm font-medium" style={{ color: 'var(--text-primary)' }}>
                       {item.producto?.nombre ?? '—'}
                     </p>
                     {item.producto?.sku && (
                       <p className="text-xs" style={{ color: 'var(--text-muted)' }}>{item.producto.sku}</p>
                     )}
-                  </td>
-                  <td className="py-3" style={{ color: 'var(--text-primary)' }}>
-                    {formatCLP(item.precio_unitario)}
-                  </td>
-                  <td className="py-3" style={{ color: 'var(--text-primary)' }}>
-                    {item.cantidad}
-                  </td>
-                  <td className="py-3">
-                    {item.descuento_porcentaje > 0 ? (
-                      <span style={{ color: 'var(--status-success)' }}>
-                        -{item.descuento_porcentaje}%
-                        {item.regla_descuento && (
-                          <span className="text-xs block" style={{ color: 'var(--text-muted)' }}>
-                            {item.regla_descuento.nombre}
-                          </span>
-                        )}
-                      </span>
-                    ) : (
-                      <span style={{ color: 'var(--text-muted)' }}>—</span>
-                    )}
-                  </td>
-                  <td className="py-3 font-medium">
-                    <span style={{ color: 'var(--text-primary)' }}>{formatCLP(item.subtotal)}</span>
-                    <span className="block text-xs font-normal" style={{ color: 'var(--text-muted)' }}>
-                      neto {formatCLP(Math.round(item.subtotal / 1.19))} + IVA {formatCLP(item.subtotal - Math.round(item.subtotal / 1.19))}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+                  </div>
+                  <p className="text-sm font-medium flex-shrink-0 ml-3" style={{ color: 'var(--text-primary)' }}>
+                    {formatCLP(item.subtotal)}
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 mt-1.5 text-xs" style={{ color: 'var(--text-secondary)' }}>
+                  <span>{formatCLP(item.precio_unitario)} × {item.cantidad}</span>
+                  {item.descuento_porcentaje > 0 && (
+                    <span style={{ color: 'var(--status-success)' }}>-{item.descuento_porcentaje}%</span>
+                  )}
+                </div>
+                <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>
+                  neto {formatCLP(Math.round(item.subtotal / 1.19))} + IVA {formatCLP(item.subtotal - Math.round(item.subtotal / 1.19))}
+                </p>
+              </div>
+            ))}
           </div>
 
           {/* Totals */}

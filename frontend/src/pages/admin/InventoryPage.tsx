@@ -143,6 +143,97 @@ function ProductRow({
   )
 }
 
+function MobileProductCard({
+  product,
+  onDelete,
+}: {
+  product: Product
+  onDelete: (id: string) => void
+}) {
+  const navigate = useNavigate()
+
+  let precioVenta: number | null = null
+  if (product.precio_venta_fijo) {
+    precioVenta = product.precio_venta_fijo
+  } else if (product.precio_compra_clp) {
+    const mult =
+      product.multiplicador ??
+      product.categoria?.multiplicador ??
+      product.proveedor?.multiplicador ??
+      2.5
+    precioVenta = Math.round(product.precio_compra_clp * mult)
+  }
+
+  return (
+    <div
+      className="px-4 py-3 active:opacity-80"
+      onClick={() => navigate(`/admin/inventario/${product.id}`)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && navigate(`/admin/inventario/${product.id}`)}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0 flex-1">
+          <p className="text-sm font-medium truncate" style={{ color: 'var(--text-primary)' }}>
+            {product.nombre}
+          </p>
+          <div className="flex items-center gap-2 mt-0.5 flex-wrap">
+            {product.sku && (
+              <span className="text-xs font-mono" style={{ color: 'var(--text-muted)' }}>
+                {product.sku}
+              </span>
+            )}
+            <span
+              className="inline-flex px-1.5 py-0.5 text-xs"
+              style={{
+                backgroundColor: 'var(--bg-muted)',
+                color: 'var(--text-muted)',
+                borderRadius: '4px',
+              }}
+            >
+              {product.categoria?.nombre ?? '—'}
+            </span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 flex-shrink-0">
+          <StockBadge product={product} />
+          <DropdownMenu>
+            {(close) => (
+              <>
+                <DropdownItem
+                  icon={<Eye size={14} />}
+                  label="Ver detalle"
+                  onClick={() => { close(); navigate(`/admin/inventario/${product.id}`) }}
+                />
+                <DropdownItem
+                  icon={<Edit size={14} />}
+                  label="Editar"
+                  onClick={() => { close(); navigate(`/admin/inventario/${product.id}/editar`) }}
+                />
+                <DropdownItem
+                  icon={<Trash2 size={14} />}
+                  label="Eliminar"
+                  danger
+                  onClick={() => { close(); onDelete(product.id) }}
+                />
+              </>
+            )}
+          </DropdownMenu>
+        </div>
+      </div>
+      <div className="flex items-center gap-4 mt-2 text-xs" style={{ color: 'var(--text-secondary)' }}>
+        <span>Costo: {formatPrice(product.precio_compra_clp)}</span>
+        <span className="font-medium" style={{ color: 'var(--text-primary)' }}>
+          Venta: {formatPrice(precioVenta)}
+        </span>
+        {product.proveedor && (
+          <span className="truncate">{product.proveedor.nombre}</span>
+        )}
+      </div>
+    </div>
+  )
+}
+
 type SortKey = 'nombre' | 'stock' | 'costo' | 'precio' | 'proveedor' | 'tipo'
 type SortDir = 'asc' | 'desc'
 
@@ -286,49 +377,59 @@ export default function InventoryPage() {
             <p className="text-sm" style={{ color: 'var(--status-danger)' }}>Error al cargar inventario</p>
           </div>
         ) : products && products.length > 0 ? (
-          <div className="overflow-x-auto">
-          <table className="w-full min-w-[750px]">
-            <thead>
-              <tr style={{ backgroundColor: 'var(--table-header-bg)' }}>
-                {([
-                  { label: 'Producto', key: 'nombre' as SortKey },
-                  { label: 'Stock', key: 'stock' as SortKey },
-                  { label: 'Costo', key: 'costo' as SortKey },
-                  { label: 'Precio venta', key: 'precio' as SortKey },
-                  { label: 'Proveedor', key: 'proveedor' as SortKey },
-                  { label: 'Tipo', key: 'tipo' as SortKey },
-                ]).map((col) => (
+          <>
+          {/* Desktop table */}
+          <div className="hidden md:block overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr style={{ backgroundColor: 'var(--table-header-bg)' }}>
+                  {([
+                    { label: 'Producto', key: 'nombre' as SortKey },
+                    { label: 'Stock', key: 'stock' as SortKey },
+                    { label: 'Costo', key: 'costo' as SortKey },
+                    { label: 'Precio venta', key: 'precio' as SortKey },
+                    { label: 'Proveedor', key: 'proveedor' as SortKey },
+                    { label: 'Tipo', key: 'tipo' as SortKey },
+                  ]).map((col) => (
+                    <th
+                      key={col.key}
+                      className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider cursor-pointer select-none transition-colors"
+                      style={{ color: 'var(--text-secondary)', borderBottom: '1px solid var(--border)' }}
+                      onClick={() => toggleSort(col.key)}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
+                    >
+                      <span className="inline-flex items-center gap-1">
+                        {col.label}
+                        {sortKey === col.key ? (
+                          sortDir === 'asc' ? <ArrowUp size={12} /> : <ArrowDown size={12} />
+                        ) : (
+                          <ArrowUpDown size={12} className="opacity-30" />
+                        )}
+                      </span>
+                    </th>
+                  ))}
                   <th
-                    key={col.key}
-                    className="px-4 py-3 text-left text-xs font-medium uppercase tracking-wider cursor-pointer select-none transition-colors"
-                    style={{ color: 'var(--text-secondary)', borderBottom: '1px solid var(--border)' }}
-                    onClick={() => toggleSort(col.key)}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--text-primary)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
-                  >
-                    <span className="inline-flex items-center gap-1">
-                      {col.label}
-                      {sortKey === col.key ? (
-                        sortDir === 'asc' ? <ArrowUp size={12} /> : <ArrowDown size={12} />
-                      ) : (
-                        <ArrowUpDown size={12} className="opacity-30" />
-                      )}
-                    </span>
-                  </th>
+                    className="px-4 py-3 text-left text-xs font-medium"
+                    style={{ borderBottom: '1px solid var(--border)' }}
+                  />
+                </tr>
+              </thead>
+              <tbody>
+                {sortedProducts.map((product) => (
+                  <ProductRow key={product.id} product={product} onDelete={(id) => setDeleteId(id)} />
                 ))}
-                <th
-                  className="px-4 py-3 text-left text-xs font-medium"
-                  style={{ borderBottom: '1px solid var(--border)' }}
-                />
-              </tr>
-            </thead>
-            <tbody>
-              {sortedProducts.map((product) => (
-                <ProductRow key={product.id} product={product} onDelete={(id) => setDeleteId(id)} />
-              ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
           </div>
+
+          {/* Mobile cards */}
+          <div className="md:hidden divide-y" style={{ borderColor: 'var(--border)' }}>
+            {sortedProducts.map((product) => (
+              <MobileProductCard key={product.id} product={product} onDelete={(id) => setDeleteId(id)} />
+            ))}
+          </div>
+          </>
         ) : (
           <div className="px-6 py-12 text-center">
             <Package size={32} className="mx-auto mb-3" style={{ color: 'var(--text-muted)' }} />

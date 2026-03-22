@@ -67,14 +67,14 @@ export function ScheduleTab() {
           {rows.map((row, index) => (
             <div
               key={row.id}
-              className="flex items-center gap-4 py-2 px-3 rounded-md"
+              className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 py-2 px-3 rounded-md"
               style={{
                 backgroundColor: row.activo ? 'transparent' : 'var(--bg-muted)',
                 borderRadius: '6px',
               }}
             >
               {/* Toggle */}
-              <label className="flex items-center gap-3 w-32 flex-shrink-0">
+              <label className="flex items-center gap-3 sm:w-32 flex-shrink-0">
                 <input
                   type="checkbox"
                   checked={row.activo}
@@ -92,12 +92,12 @@ export function ScheduleTab() {
 
               {/* Horarios */}
               {row.activo ? (
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 pl-7 sm:pl-0">
                   <input
                     type="time"
                     value={row.hora_inicio}
                     onChange={(e) => handleChange(index, 'hora_inicio', e.target.value)}
-                    className="px-2 py-1.5 text-sm outline-none"
+                    className="px-2 py-1.5 text-sm outline-none min-w-0 flex-1 sm:flex-none"
                     style={{
                       backgroundColor: 'var(--input-bg)',
                       border: '1px solid var(--input-border)',
@@ -105,12 +105,12 @@ export function ScheduleTab() {
                       color: 'var(--input-text)',
                     }}
                   />
-                  <span className="text-sm" style={{ color: 'var(--text-muted)' }}>a</span>
+                  <span className="text-sm flex-shrink-0" style={{ color: 'var(--text-muted)' }}>a</span>
                   <input
                     type="time"
                     value={row.hora_fin}
                     onChange={(e) => handleChange(index, 'hora_fin', e.target.value)}
-                    className="px-2 py-1.5 text-sm outline-none"
+                    className="px-2 py-1.5 text-sm outline-none min-w-0 flex-1 sm:flex-none"
                     style={{
                       backgroundColor: 'var(--input-bg)',
                       border: '1px solid var(--input-border)',
@@ -120,7 +120,7 @@ export function ScheduleTab() {
                   />
                 </div>
               ) : (
-                <span className="text-sm" style={{ color: 'var(--text-muted)' }}>Cerrado</span>
+                <span className="text-sm pl-7 sm:pl-0" style={{ color: 'var(--text-muted)' }}>Cerrado</span>
               )}
             </div>
           ))}

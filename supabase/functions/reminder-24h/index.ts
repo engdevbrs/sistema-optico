@@ -66,8 +66,11 @@ Deno.serve(async (req) => {
         day: 'numeric',
       })
 
+      const primerNombre = paciente.nombre.split(' ')[0]
+      const horaFormateada = cita.hora_inicio.substring(0, 5)
       const siteUrl = Deno.env.get('SITE_URL') || 'http://localhost:5173'
       const manageUrl = cita.token ? `${siteUrl}/mi-cita/${cita.token}` : siteUrl
+      const mapsUrl = 'https://maps.google.com/?q=Av.+O%27Higgins+1074,+Chiguayante,+Chile'
 
       const html = `
         <!DOCTYPE html>
@@ -126,7 +129,7 @@ Deno.serve(async (req) => {
                           <tr><td style="width: 56px; height: 56px; background-color: #FEF3C7; border-radius: 50%; text-align: center; vertical-align: middle; font-size: 28px;">&#9200;</td></tr>
                         </table>
                         <h2 class="email-text-primary" style="color: #0F172A; font-size: 20px; margin: 0 0 4px;">Tu cita es ma&ntilde;ana</h2>
-                        <p class="email-text-secondary" style="color: #64748B; font-size: 14px; margin: 0;">${paciente.nombre}, te recordamos que tienes una cita agendada</p>
+                        <p class="email-text-secondary" style="color: #64748B; font-size: 14px; margin: 0;">${primerNombre}, te recordamos que tienes una cita agendada</p>
                       </div>
 
                       <!-- Details -->
@@ -142,11 +145,18 @@ Deno.serve(async (req) => {
                           </tr>
                           <tr>
                             <td class="email-text-muted" style="color: #94A3B8; font-size: 13px; padding: 5px 0;">Hora</td>
-                            <td class="email-value" style="color: #0F172A; font-size: 13px; font-weight: 500; text-align: right; padding: 5px 0;">${cita.hora_inicio} hrs</td>
+                            <td class="email-value" style="color: #0F172A; font-size: 13px; font-weight: 500; text-align: right; padding: 5px 0;">${horaFormateada} hrs</td>
                           </tr>
                           <tr>
                             <td class="email-text-muted" style="color: #94A3B8; font-size: 13px; padding: 5px 0;">Ubicaci&oacute;n</td>
-                            <td class="email-value" style="color: #0F172A; font-size: 13px; font-weight: 500; text-align: right; padding: 5px 0;">Piso 2, Local 8</td>
+                            <td class="email-value" style="color: #0F172A; font-size: 13px; font-weight: 500; text-align: right; padding: 5px 0;">
+                              <a href="${mapsUrl}" style="color: #2563EB; text-decoration: none;">Av. O'Higgins 1074, Piso 2, Local 8, Chiguayante &#128205;</a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" style="padding: 6px 0 0;">
+                              <p class="email-text-muted" style="color: #94A3B8; font-size: 12px; margin: 0; font-style: italic;">&#9989; Estacionamientos disponibles &nbsp;&middot;&nbsp; &#9989; Ascensor</p>
+                            </td>
                           </tr>
                         </table>
                       </div>
