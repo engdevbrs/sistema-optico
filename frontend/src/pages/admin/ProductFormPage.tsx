@@ -71,7 +71,7 @@ export default function ProductFormPage() {
       if (field === 'multiplicador' && costoCLP) {
         const mult = Number(value)
         if (mult > 0) {
-          next.precio_venta_fijo = String(Math.round(costoCLP * mult))
+          next.precio_venta_fijo = Math.round(costoCLP * mult) as ProductFormData['precio_venta_fijo']
         }
       }
 
@@ -79,7 +79,7 @@ export default function ProductFormPage() {
       if (field === 'precio_venta_fijo' && costoCLP) {
         const pvf = Number(value)
         if (pvf > 0) {
-          next.multiplicador = String(Math.round((pvf / costoCLP) * 10) / 10)
+          next.multiplicador = (Math.round((pvf / costoCLP) * 10) / 10) as ProductFormData['multiplicador']
         }
       }
 
@@ -87,7 +87,7 @@ export default function ProductFormPage() {
       if (field === 'precio_compra_usd' && costoCLP) {
         const mult = Number(next.multiplicador)
         if (mult > 0) {
-          next.precio_venta_fijo = String(Math.round(costoCLP * mult))
+          next.precio_venta_fijo = Math.round(costoCLP * mult) as ProductFormData['precio_venta_fijo']
         }
       }
 

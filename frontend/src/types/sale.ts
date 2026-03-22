@@ -72,9 +72,7 @@ export const DISCOUNT_LEVEL_LABELS: Record<DiscountLevel, string> = {
 
 export const discountRuleFormSchema = z.object({
   nombre: z.string().min(2, 'El nombre debe tener al menos 2 caracteres').max(100),
-  nivel: z.enum(['GLOBAL', 'CATEGORIA', 'PROVEEDOR', 'PRODUCTO', 'TEMPORAL'], {
-    errorMap: () => ({ message: 'Selecciona un nivel' }),
-  }),
+  nivel: z.enum(['GLOBAL', 'CATEGORIA', 'PROVEEDOR', 'PRODUCTO', 'TEMPORAL']),
   porcentaje: z.union([z.number(), z.string().transform((v) => Number(v))])
     .refine((v) => v >= 1 && v <= 100, 'El porcentaje debe estar entre 1 y 100'),
   categoria_id: z.string().uuid().optional().or(z.literal('')),
@@ -167,9 +165,7 @@ export const saleStep1Schema = z.object({
 })
 
 export const saleStep2Schema = z.object({
-  verificacion: z.enum(['PRESENCIAL', 'FAMILIAR_AUTORIZADO', 'COMPROBANTE'], {
-    errorMap: () => ({ message: 'Selecciona un método de verificación' }),
-  }),
+  verificacion: z.enum(['PRESENCIAL', 'FAMILIAR_AUTORIZADO', 'COMPROBANTE']),
 })
 
 export const saleStep3Schema = z.object({
@@ -188,9 +184,7 @@ export const saleStep4Schema = z.object({
 )
 
 export const saleStep6Schema = z.object({
-  metodo_pago: z.enum(['EFECTIVO', 'DEBITO', 'CREDITO', 'TRANSFERENCIA'], {
-    errorMap: () => ({ message: 'Selecciona un método de pago' }),
-  }),
+  metodo_pago: z.enum(['EFECTIVO', 'DEBITO', 'CREDITO', 'TRANSFERENCIA']),
   monto_pagado: z.number().nullable(),
   total: z.number(),
 }).refine(

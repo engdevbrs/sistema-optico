@@ -32,7 +32,10 @@ export function usePatientAppointments(pacienteId: string | undefined) {
         .limit(20)
 
       if (error) throw error
-      return data as PatientAppointment[]
+      return (data ?? []).map((item) => ({
+        ...item,
+        tipo_cita: Array.isArray(item.tipo_cita) ? item.tipo_cita[0] : item.tipo_cita,
+      })) as PatientAppointment[]
     },
     enabled: !!pacienteId,
   })

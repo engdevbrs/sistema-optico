@@ -210,7 +210,6 @@ export default function AppointmentPage() {
             <EditDateForm
               token={token!}
               tipoCitaId={(cita.tipo_cita as unknown as { id: string })?.id ?? ''}
-              currentFecha={cita.fecha}
               editFecha={editFecha}
               editHora={editHora}
               setEditFecha={setEditFecha}
@@ -272,11 +271,10 @@ export default function AppointmentPage() {
 // ── Edit Date Form ──────────────────────────────────────
 
 function EditDateForm({
-  token, tipoCitaId, currentFecha, editFecha, editHora, setEditFecha, setEditHora, onClose, onSuccess,
+  token, tipoCitaId, editFecha, editHora, setEditFecha, setEditHora, onClose, onSuccess,
 }: {
   token: string
   tipoCitaId: string
-  currentFecha: string
   editFecha: string
   editHora: string
   setEditFecha: (v: string) => void

@@ -26,6 +26,8 @@ export interface Product {
     nombre: string
     tipo: string
     multiplicador: number | null
+    umbral_stock_medio: number | null
+    umbral_stock_minimo: number | null
   }
   proveedor?: {
     id: string

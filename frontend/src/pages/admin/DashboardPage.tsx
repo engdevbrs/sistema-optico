@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import {
-  Calendar, Users, ShoppingCart, Package, Loader2,
+  Calendar, Users, ShoppingCart, Loader2,
   TrendingUp, AlertTriangle, Clock, ArrowRight, Trophy,
 } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth'

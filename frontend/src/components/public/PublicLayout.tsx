@@ -1,5 +1,5 @@
 import { Outlet, Link } from 'react-router-dom'
-import { Phone, Mail, MapPin, Clock } from 'lucide-react'
+import { Phone, Mail, MapPin } from 'lucide-react'
 import { useConfig } from '../../hooks/useConfig'
 import { useWeeklySchedule } from '../../hooks/useAppointments'
 

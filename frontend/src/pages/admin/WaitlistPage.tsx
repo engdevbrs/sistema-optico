@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Link } from 'react-router-dom'
 import { ClipboardList, Plus, Bell, Check, X, Search, UserPlus } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { useWaitlist, useAddToWaitlist, useUpdateWaitlistStatus, useDeleteWaitlistEntry } from '../../hooks/useWaitlist'

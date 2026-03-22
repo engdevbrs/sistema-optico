@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import {
   ArrowLeft, ArrowRight, Check, UserCheck, Users, FileText,
   Search, Plus, Minus, X, Banknote, CreditCard, ArrowRightLeft,
-  ShoppingCart, Printer, Eye, Clipboard,
+  ShoppingCart, Printer, Eye,
 } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { usePatients, useCreatePatient } from '../../hooks/usePatients'
@@ -15,7 +15,6 @@ import { calculateSalePrice, findApplicableDiscount, calculateItemTotals, calcul
 import { ConfirmModal } from '../../components/ui/ConfirmModal'
 import {
   INITIAL_WIZARD_STATE,
-  SALE_STATUS_CONFIG,
   PAYMENT_METHOD_LABELS,
   VERIFICATION_LABELS,
 } from '../../types/sale'
@@ -1104,8 +1103,6 @@ function Step6Payment({ wizard, updateWizard, onNext, onPrev }: StepProps) {
     }
 
     const finalMonto = wizard.metodo_pago === 'EFECTIVO' ? monto : totals.total
-    const finalVuelto = wizard.metodo_pago === 'EFECTIVO' ? vuelto : 0
-
     updateWizard({
       monto_pagado: finalMonto,
       notas: notas.trim() || null,

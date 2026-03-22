@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MessageSquare, Star, ThumbsUp, ThumbsDown, Trash2, Eye, EyeOff, BarChart3 } from 'lucide-react'
+import { MessageSquare, Star, ThumbsUp, Trash2, Eye, EyeOff, BarChart3 } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { useSurveys, useToggleApproval, useDeleteSurvey, useSurveyStats } from '../../hooks/useSurveys'
 import { ConfirmModal } from '../../components/ui/ConfirmModal'

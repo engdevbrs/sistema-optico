@@ -139,9 +139,16 @@ export function useDashboardStats() {
         salesCountThisMonth: salesMonthRes.data?.length ?? 0,
         totalProducts: productsRes.count ?? 0,
         lowStockCount: lowStockRes.count ?? 0,
-        recentSales: (recentSalesRes.data ?? []) as DashboardStats['recentSales'],
+        recentSales: (recentSalesRes.data ?? []).map((item) => ({
+          ...item,
+          paciente: Array.isArray(item.paciente) ? item.paciente[0] : item.paciente,
+        })) as DashboardStats['recentSales'],
         topProducts,
-        todayAppointments: (todayAppointmentsRes.data ?? []) as DashboardStats['todayAppointments'],
+        todayAppointments: (todayAppointmentsRes.data ?? []).map((item) => ({
+          ...item,
+          paciente: Array.isArray(item.paciente) ? item.paciente[0] : item.paciente,
+          tipo_cita: Array.isArray(item.tipo_cita) ? item.tipo_cita[0] : item.tipo_cita,
+        })) as DashboardStats['todayAppointments'],
       }
     },
     staleTime: 1000 * 60 * 2,

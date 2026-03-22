@@ -191,7 +191,10 @@ export function usePublicReviews() {
         .limit(6)
 
       if (error) throw error
-      return data as { calificacion: number; comentario: string | null; respondida_at: string; paciente: { nombre: string } }[]
+      return (data ?? []).map((item) => ({
+        ...item,
+        paciente: Array.isArray(item.paciente) ? item.paciente[0] : item.paciente,
+      })) as { calificacion: number; comentario: string | null; respondida_at: string; paciente: { nombre: string } }[]
     },
     staleTime: 1000 * 60 * 10,
   })
@@ -228,7 +231,11 @@ export function useActivePromotions() {
         .order('porcentaje', { ascending: false })
 
       if (error) throw error
-      return data as { id: string; nombre: string; porcentaje: number; nivel: string; fecha_inicio: string; fecha_fin: string; categoria: { nombre: string } | null; producto: { nombre: string } | null }[]
+      return (data ?? []).map((item) => ({
+        ...item,
+        categoria: Array.isArray(item.categoria) ? item.categoria[0] : item.categoria,
+        producto: Array.isArray(item.producto) ? item.producto[0] : item.producto,
+      })) as { id: string; nombre: string; porcentaje: number; nivel: string; fecha_inicio: string; fecha_fin: string; categoria: { nombre: string } | null; producto: { nombre: string } | null }[]
     },
     staleTime: 1000 * 60 * 15,
   })
