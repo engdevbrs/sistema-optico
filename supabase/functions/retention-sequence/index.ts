@@ -86,7 +86,7 @@ function buildEmail1(nombre: string, bookUrl: string): string {
 
                 <div class="email-highlight" style="background-color:#EFF6FF;border-radius:8px;padding:16px;margin:0 0 24px;text-align:center;">
                   <p class="email-highlight-text" style="color:#1E40AF;font-size:14px;font-weight:500;margin:0;line-height:1.5;">
-                    Puedes reagendar tu cita en cualquier momento.<br>Seguimos con evaluaci&oacute;n visual <strong>100% gratuita</strong>.
+                    Puedes reagendar tu cita en cualquier momento.<br>Seguimos con evaluaci&oacute;n visual profesional.
                   </p>
                 </div>
 
@@ -99,7 +99,7 @@ function buildEmail1(nombre: string, bookUrl: string): string {
                 </table>
 
                 <p class="email-text-muted" style="color:#94A3B8;font-size:12px;margin:0;text-align:center;">
-                  Sin compromiso, sin costo.
+                  Te esperamos.
                 </p>
               </div>
               ${emailFooter()}
@@ -139,20 +139,20 @@ function buildEmail2(nombre: string, bookUrl: string): string {
 
                 <div class="email-highlight" style="background-color:#EFF6FF;border-radius:8px;padding:16px;margin:0 0 24px;text-align:center;">
                   <p class="email-highlight-text" style="color:#1E40AF;font-size:14px;font-weight:500;margin:0;line-height:1.5;">
-                    Tu evaluaci&oacute;n visual es <strong>100% gratuita</strong>.<br>Solo toma 20 minutos y puede marcar la diferencia.
+                    Tu evaluaci&oacute;n visual profesional solo toma 20 minutos y puede marcar la diferencia.
                   </p>
                 </div>
 
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin:0 0 16px;">
                   <tr><td align="center">
                     <a href="${bookUrl}" style="display:inline-block;background:#2563EB;color:#ffffff;text-decoration:none;padding:14px 32px;border-radius:8px;font-size:14px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-                      Agendar evaluaci&oacute;n gratuita
+                      Agendar mi cita
                     </a>
                   </td></tr>
                 </table>
 
                 <p class="email-text-muted" style="color:#94A3B8;font-size:12px;margin:0;text-align:center;">
-                  Sin costo, sin compromiso. Tu visi&oacute;n lo vale.
+                  Tu visi&oacute;n lo vale.
                 </p>
               </div>
               ${emailFooter()}
@@ -184,16 +184,16 @@ function buildEmail3(nombre: string, bookUrl: string): string {
                 </div>
 
                 <p class="email-text-secondary" style="color:#64748B;font-size:14px;margin:0 0 24px;line-height:1.6;">
-                  Solo queremos asegurarnos de que no se te olvide. Cuidar tu visi&oacute;n es una inversi&oacute;n en tu calidad de vida &mdash; y en Optikara lo hacemos f&aacute;cil y sin costo.
+                  Solo queremos asegurarnos de que no se te olvide. Cuidar tu visi&oacute;n es una inversi&oacute;n en tu calidad de vida &mdash; y en Optikara lo hacemos f&aacute;cil.
                 </p>
 
                 <div class="email-surface" style="background-color:#F8FAFC;border-radius:8px;padding:16px;margin:0 0 24px;">
-                  <p class="email-text-secondary" style="color:#64748B;font-size:13px;font-weight:600;margin:0 0 12px;">Lo que incluye tu evaluaci&oacute;n gratuita:</p>
+                  <p class="email-text-secondary" style="color:#64748B;font-size:13px;font-weight:600;margin:0 0 12px;">Lo que incluye tu evaluaci&oacute;n profesional:</p>
                   <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                     <tr><td class="email-text-secondary" style="color:#64748B;font-size:13px;padding:4px 0 4px 12px;">&#10004;&#65039; Examen de agudeza visual</td></tr>
                     <tr><td class="email-text-secondary" style="color:#64748B;font-size:13px;padding:4px 0 4px 12px;">&#10004;&#65039; Receta &oacute;ptica profesional</td></tr>
                     <tr><td class="email-text-secondary" style="color:#64748B;font-size:13px;padding:4px 0 4px 12px;">&#10004;&#65039; Asesor&iacute;a personalizada</td></tr>
-                    <tr><td class="email-text-secondary" style="color:#64748B;font-size:13px;padding:4px 0 4px 12px;">&#10004;&#65039; Sin compromiso de compra</td></tr>
+                    <tr><td class="email-text-secondary" style="color:#64748B;font-size:13px;padding:4px 0 4px 12px;">&#10004;&#65039; Tecnolog&iacute;a de punta</td></tr>
                   </table>
                 </div>
 
@@ -206,7 +206,7 @@ function buildEmail3(nombre: string, bookUrl: string): string {
                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin:0 0 16px;">
                   <tr><td align="center">
                     <a href="${bookUrl}" style="display:inline-block;background:linear-gradient(135deg,#2563EB 0%,#7C3AED 100%);color:#ffffff;text-decoration:none;padding:16px 40px;border-radius:8px;font-size:15px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-                      Agendar mi evaluaci&oacute;n gratis
+                      Agendar mi cita
                     </a>
                   </td></tr>
                 </table>

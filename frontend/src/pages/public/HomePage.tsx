@@ -61,8 +61,8 @@ export default function HomePage() {
   return (
     <div style={{ overflow: 'hidden' }}>
       <Helmet>
-        <title>{businessName} — Examen Visual Gratuito | Lentes y Marcos en Chiguayante</title>
-        <meta name="description" content={`${businessName} en Chiguayante, Concepción. Examen visual gratuito con receta incluida. Lentes ópticos, lentes de sol, marcos Ray-Ban, Oakley y más. Agenda en 60 segundos.`} />
+        <title>{businessName} — Centro de Salud Visual | Lentes y Marcos en Chiguayante</title>
+        <meta name="description" content={`${businessName} en Chiguayante, Concepción. Examen visual profesional con receta incluida. Lentes ópticos, lentes de sol, marcos Ray-Ban, Oakley y más. Agenda en 60 segundos.`} />
         <link rel="canonical" href="https://tuoptica.cl/" />
         <script type="application/ld+json">
           {JSON.stringify({
@@ -80,7 +80,7 @@ export default function HomePage() {
       {/* ═══════════════════════════════════════════════
           HERO — Split layout with image
           ═══════════════════════════════════════════════ */}
-      <section ref={heroRef} aria-label="Examen visual gratuito" className="relative min-h-screen flex items-center">
+      <section ref={heroRef} aria-label="Centro de salud visual" className="relative min-h-screen flex items-center">
         {/* Background */}
         <div className="absolute inset-0 -z-10" style={{
           background: 'radial-gradient(ellipse 80% 60% at 50% 40%, rgba(37,99,235,0.12) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 80% 20%, rgba(124,58,237,0.08) 0%, transparent 60%), var(--bg-page)',
@@ -123,7 +123,7 @@ export default function HomePage() {
                 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[0.95] tracking-tight"
                 style={{ color: 'var(--text-primary)' }}
               >
-                Examen visual
+                Centro de
                 <br />
                 <motion.span
                   initial={{ opacity: 0, scale: 0.5 }}
@@ -137,7 +137,7 @@ export default function HomePage() {
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     animation: 'gradient-shift 5s ease infinite',
-                  }}>gratuito</span>
+                  }}>salud visual</span>
                   <motion.div
                     className="absolute -bottom-1.5 left-0 right-0 h-1.5 rounded-full"
                     style={{ background: 'linear-gradient(90deg, #2563EB, #7C3AED, #EC4899)', opacity: 0.25 }}
@@ -157,7 +157,7 @@ export default function HomePage() {
                 className="text-lg sm:text-xl mt-7 max-w-lg leading-relaxed"
                 style={{ color: 'var(--text-secondary)' }}
               >
-                Te evaluamos, te damos tu receta y te asesoramos — <strong style={{ color: 'var(--text-primary)' }}>sin costo, sin compromiso</strong>.
+                Te evaluamos, te damos tu receta y te asesoramos — <strong style={{ color: 'var(--text-primary)' }}>atención personalizada con tecnología de punta</strong>.
               </motion.p>
 
               <motion.div
@@ -176,7 +176,7 @@ export default function HomePage() {
                     }}
                   >
                     <Calendar size={20} />
-                    Agendar mi examen gratis
+                    Agendar mi cita
                     <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                   </Link>
                 </motion.div>
@@ -202,7 +202,7 @@ export default function HomePage() {
                 {[
                   { icon: CheckCircle2, text: 'Examen completo' },
                   { icon: CheckCircle2, text: 'Receta incluida' },
-                  { icon: CheckCircle2, text: 'Asesoría gratis' },
+                  { icon: CheckCircle2, text: 'Asesoría personalizada' },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-center gap-2">
                     <Icon size={14} style={{ color: 'var(--status-success)' }} />
@@ -356,7 +356,7 @@ export default function HomePage() {
                 <Sparkles size={14} /> Servicios
               </span>
               <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-                Consultas gratuitas,
+                Consultas profesionales,
                 <br /><span style={{ color: 'var(--text-muted)' }}>siempre.</span>
               </h2>
             </FadeIn>
@@ -380,7 +380,7 @@ export default function HomePage() {
                           <Icon size={28} style={{ color }} />
                         </div>
                         <span className="text-xs font-extrabold px-3 py-1.5 tracking-wider"
-                          style={{ backgroundColor: 'var(--badge-success-bg)', color: 'var(--status-success)', borderRadius: '10px' }}>GRATIS</span>
+                          style={{ backgroundColor: 'var(--badge-primary-bg)', color: 'var(--btn-primary-bg)', borderRadius: '10px' }}>PROFESIONAL</span>
                       </div>
                       <h3 className="text-xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>{type.nombre}</h3>
                       <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>
@@ -439,7 +439,7 @@ export default function HomePage() {
             <FadeIn direction="right">
               <div className="space-y-5">
                 {[
-                  { num: '01', title: 'Agenda gratis', desc: 'Elige el tipo de consulta y el horario que te acomode. Sin costo, sin cuenta.', icon: Calendar, color: '#3B82F6' },
+                  { num: '01', title: 'Agenda fácil', desc: 'Elige el tipo de consulta y el horario que te acomode. Simple y rápido.', icon: Calendar, color: '#3B82F6' },
                   { num: '02', title: 'Te examinamos', desc: 'Evaluación visual completa + receta profesional. Todo incluido en una sola visita.', icon: Eye, color: '#10B981' },
                   { num: '03', title: 'Te asesoramos', desc: 'Te ayudamos a elegir los lentes y marcos ideales según tu receta y estilo de vida.', icon: CheckCircle2, color: '#8B5CF6' },
                 ].map(({ num, title, desc, icon: Icon, color }, i) => (
@@ -473,7 +473,7 @@ export default function HomePage() {
                 <Link to="/reservar"
                   className="inline-flex items-center gap-2.5 px-8 py-4 text-base font-bold"
                   style={{ background: 'linear-gradient(135deg, #2563EB, #7C3AED)', color: '#fff', borderRadius: '16px', boxShadow: '0 8px 32px rgba(37,99,235,0.3)' }}>
-                  Agendar mi examen gratis <ArrowRight size={18} />
+                  Agendar mi cita <ArrowRight size={18} />
                 </Link>
               </motion.div>
             </FadeIn>
@@ -637,13 +637,13 @@ export default function HomePage() {
               style={{ borderRadius: '24px', background: 'linear-gradient(135deg, rgba(37,99,235,0.06), rgba(124,58,237,0.06))', border: '1px solid var(--border)' }}
               whileHover={{ boxShadow: '0 8px 40px rgba(37,99,235,0.08)' }}>
               <p className="text-2xl sm:text-3xl font-extrabold mb-2" style={{ color: 'var(--text-primary)' }}>
-                Examen + receta + asesoría = <span style={{ backgroundImage: 'linear-gradient(135deg, #10B981, #34D399)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>$0</span>
+                Examen + receta + asesoría = <span style={{ backgroundImage: 'linear-gradient(135deg, #10B981, #34D399)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>atención integral</span>
               </p>
-              <p className="text-base mb-6" style={{ color: 'var(--text-secondary)' }}>Todo gratis en una sola visita</p>
+              <p className="text-base mb-6" style={{ color: 'var(--text-secondary)' }}>Todo en una sola visita</p>
               <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }} className="inline-block">
                 <Link to="/reservar" className="inline-flex items-center gap-2.5 px-8 py-4 text-base font-bold"
                   style={{ background: 'linear-gradient(135deg, #2563EB, #7C3AED)', color: '#fff', borderRadius: '16px', boxShadow: '0 8px 32px rgba(37,99,235,0.3)' }}>
-                  <Calendar size={20} /> Agendar mi examen gratis <ArrowRight size={18} />
+                  <Calendar size={20} /> Agendar mi cita <ArrowRight size={18} />
                 </Link>
               </motion.div>
             </motion.div>
@@ -679,7 +679,7 @@ export default function HomePage() {
               </h2>
               <Stagger className="space-y-4" staggerDelay={0.1}>
                 {[
-                  { icon: Zap, title: 'Todo gratis', desc: 'Examen, receta y asesoría sin costo.', color: '#3B82F6' },
+                  { icon: Zap, title: 'Atención integral', desc: 'Examen completo, receta y asesoría profesional.', color: '#3B82F6' },
                   { icon: Shield, title: 'Profesionales certificados', desc: 'Años de experiencia clínica.', color: '#10B981' },
                   { icon: Heart, title: 'Servicio completo', desc: 'Evaluamos, recetamos y equipamos.', color: '#F59E0B' },
                   { icon: Activity, title: 'Tecnología moderna', desc: 'Diagnósticos precisos y actualizados.', color: '#8B5CF6' },
@@ -1010,13 +1010,13 @@ export default function HomePage() {
                 <Sparkles size={40} color="#fff" className="mx-auto mb-6 opacity-80" />
               </motion.div>
               <h2 className="text-4xl sm:text-6xl font-extrabold text-white leading-tight tracking-tight">
-                Tu examen visual<br />gratuito te espera
+                Tu salud visual<br />merece lo mejor
               </h2>
               <p className="text-lg mt-5 text-white/70 max-w-xl mx-auto leading-relaxed">
                 Agenda ahora — te atendemos en menos de 48 horas.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-6 mt-6 text-white/60 text-sm font-medium">
-                {['Sin costo', 'Sin cuenta', 'Sin compromiso'].map((item, i) => (
+                {['Profesionales certificados', 'Tecnología de punta', 'Atención personalizada'].map((item, i) => (
                   <motion.span key={item} className="flex items-center gap-1.5"
                     initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.12 }}>

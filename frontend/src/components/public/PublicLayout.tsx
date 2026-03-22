@@ -38,7 +38,7 @@ export function PublicLayout() {
               borderRadius: '6px',
             }}
           >
-            Examen gratis
+            Agendar cita
           </Link>
         </nav>
       </header>

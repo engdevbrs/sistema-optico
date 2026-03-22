@@ -110,7 +110,7 @@ export default function BookingPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold" style={{ color: 'var(--text-primary)' }}>
-            Agenda tu examen gratis
+            Agenda tu cita
           </h1>
           <p className="text-sm mt-2" style={{ color: 'var(--text-secondary)' }}>
             Paso {step} de 4 — {['Tipo de consulta', 'Fecha y hora', 'Tus datos', 'Verificación'][step - 1]}
@@ -344,7 +344,7 @@ export default function BookingPage() {
                   opacity: bookMutation.isPending ? 0.6 : 1,
                 }}
               >
-                {bookMutation.isPending ? 'Agendando...' : 'Agendar examen gratis'}
+                {bookMutation.isPending ? 'Agendando...' : 'Agendar cita'}
               </button>
             </div>
           )}

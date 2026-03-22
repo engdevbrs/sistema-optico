@@ -135,7 +135,7 @@ Deno.serve(async (req) => {
                       </p>
                       <div class="email-highlight" style="background-color:#EFF6FF;border-radius:8px;padding:16px;margin:0 0 24px;text-align:center;">
                         <p class="email-highlight-text" style="color:#1E40AF;font-size:14px;font-weight:500;margin:0;line-height:1.5;">
-                          Tu evaluaci&oacute;n es <strong>gratuita</strong> y solo toma 20 minutos.
+                          Tu evaluaci&oacute;n solo toma 20 minutos.
                         </p>
                       </div>
                       <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin:0 0 16px;">

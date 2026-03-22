@@ -100,10 +100,6 @@ async function sendVerificationEmail(to: string, nombre: string, codigo: string,
                         <td class="email-text-muted" style="color: #94A3B8; font-size: 13px; padding: 5px 0;">Hora</td>
                         <td class="email-value" style="color: #0F172A; font-size: 13px; font-weight: 500; text-align: right; padding: 5px 0;">${hora} hrs</td>
                       </tr>
-                      <tr>
-                        <td class="email-text-muted" style="color: #94A3B8; font-size: 13px; padding: 5px 0;">Costo</td>
-                        <td style="color: #16A34A; font-size: 13px; font-weight: 600; text-align: right; padding: 5px 0;">Gratis</td>
-                      </tr>
                     </table>
                   </div>
 
