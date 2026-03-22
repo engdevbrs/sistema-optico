@@ -1,0 +1,8 @@
+# Robots.txt — Óptica Chiguayante
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /admin/*
+
+# Sitemap
+Sitemap: https://tuoptica.cl/sitemap.xml
