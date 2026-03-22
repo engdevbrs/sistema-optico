@@ -208,7 +208,7 @@ export function useDeleteDiscountRule() {
     mutationFn: async (id: string) => {
       const { error } = await supabase
         .from('regla_descuento')
-        .delete()
+        .update({ activo: false })
         .eq('id', id)
 
       if (error) throw error

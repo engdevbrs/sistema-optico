@@ -92,10 +92,10 @@ function DiscountsTab() {
     if (!deleteId) return
     try {
       await deleteRule.mutateAsync(deleteId)
-      toast.success('Regla eliminada')
+      toast.success('Regla desactivada')
       setDeleteId(null)
     } catch {
-      toast.error('Error al eliminar. Puede estar en uso en ventas.')
+      toast.error('Error al desactivar la regla')
     }
   }
 
@@ -218,14 +218,16 @@ function DiscountsTab() {
                   >
                     <Pencil size={14} />
                   </button>
-                  <button
-                    onClick={() => setDeleteId(rule.id)}
-                    className="p-2 rounded-md"
-                    style={{ color: 'var(--status-danger)' }}
-                    aria-label="Eliminar"
-                  >
-                    <Trash2 size={14} />
-                  </button>
+                  {rule.activo && (
+                    <button
+                      onClick={() => setDeleteId(rule.id)}
+                      className="p-2 rounded-md"
+                      style={{ color: 'var(--status-danger)' }}
+                      aria-label="Desactivar"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  )}
                 </div>
               </div>
             )
@@ -249,9 +251,9 @@ function DiscountsTab() {
 
       {deleteId && (
         <ConfirmModal
-          title="Eliminar regla de descuento"
-          message="¿Estás seguro? Si la regla está siendo usada en ventas existentes, no se podrá eliminar."
-          confirmLabel="Sí, eliminar"
+          title="Desactivar regla de descuento"
+          message="¿Estás seguro? La regla será desactivada y no se aplicará en nuevas ventas. Las ventas existentes conservarán su historial."
+          confirmLabel="Sí, desactivar"
           danger
           onConfirm={handleDelete}
           onCancel={() => setDeleteId(null)}
