@@ -14,8 +14,9 @@ import { useConfig } from '../../hooks/useConfig'
 import { useWeeklySchedule } from '../../hooks/useAppointments'
 import { usePublicReviews, usePublicAppointmentTypes, useActivePromotions } from '../../hooks/usePublicBooking'
 import {
-  FadeIn, Stagger, ScaleIn, AnimatedCounter, Float, Marquee,
+  FadeIn, Stagger, ScaleIn, Float, Marquee,
 } from '../../components/public/MotionComponents'
+import ChatWidget from '../../components/public/ChatWidget'
 
 const DAY_NAMES = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
 
@@ -305,8 +306,8 @@ export default function HomePage() {
                     <CheckCircle2 size={18} color="#fff" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold" style={{ color: 'var(--text-primary)' }}>+500 pacientes</p>
-                    <p className="text-[10px]" style={{ color: 'var(--text-muted)' }}>atendidos con éxito</p>
+                    <p className="text-xs font-bold" style={{ color: 'var(--text-primary)' }}>Profesionales certificados</p>
+                    <p className="text-[10px]" style={{ color: 'var(--text-muted)' }}>en salud visual</p>
                   </div>
                 </motion.div>
               </Float>
@@ -316,31 +317,35 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          STATS — Bento with icons
+          TRUST BAR — Credenciales reales
           ═══════════════════════════════════════════════ */}
-      <section className="px-4 sm:px-6 py-20">
+      <section className="px-4 sm:px-6 py-10">
         <div className="max-w-5xl mx-auto">
-          <Stagger className="grid grid-cols-2 lg:grid-cols-4 gap-4" staggerDelay={0.1}>
-            {[
-              { value: 500, prefix: '+', label: 'Pacientes atendidos', icon: Users, gradient: 'linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(59,130,246,0.02) 100%)' },
-              { value: avgRating > 0 ? avgRating : 5.0, label: 'Calificación promedio', icon: Star, gradient: 'linear-gradient(135deg, rgba(245,158,11,0.08) 0%, rgba(245,158,11,0.02) 100%)', decimals: 1 },
-              { value: 5, prefix: '+', label: 'Años de experiencia', icon: Award, gradient: 'linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.02) 100%)' },
-              { value: 100, suffix: '%', label: 'Compromiso contigo', icon: Heart, gradient: 'linear-gradient(135deg, rgba(239,68,68,0.08) 0%, rgba(239,68,68,0.02) 100%)' },
-            ].map(({ value, prefix, suffix, label, icon: Icon, gradient, decimals }) => (
-              <motion.div
-                key={label}
-                className="relative p-6 text-center overflow-hidden"
-                style={{ background: gradient, border: '1px solid var(--border)', borderRadius: '20px' }}
-                whileHover={{ y: -4, boxShadow: '0 12px 40px rgba(0,0,0,0.08)' }}
-                transition={{ duration: 0.3 }}
-              >
-                <Icon size={20} className="mx-auto mb-3" style={{ color: 'var(--text-muted)' }} />
-                <AnimatedCounter value={value} prefix={prefix} suffix={suffix} decimals={decimals ?? 0}
-                  className="block text-4xl sm:text-5xl font-extrabold tracking-tight" style={{ color: 'var(--text-primary)' }} />
-                <p className="text-xs font-medium mt-2 uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>{label}</p>
-              </motion.div>
-            ))}
-          </Stagger>
+          <FadeIn>
+            <div
+              className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 px-6 py-5"
+              style={{
+                background: 'var(--bg-surface)',
+                border: '1px solid var(--border)',
+                borderRadius: '20px',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
+              }}
+            >
+              {[
+                { icon: Shield, label: 'Optometristas certificados', color: '#3B82F6' },
+                { icon: ScanEye, label: 'Equipo de última generación', color: '#10B981' },
+                { icon: Calendar, label: 'Agenda en línea 24/7', color: '#8B5CF6' },
+                { icon: CreditCard, label: 'Pagos flexibles', color: '#F59E0B' },
+              ].map(({ icon: Icon, label, color }) => (
+                <div key={label} className="flex items-center gap-2.5">
+                  <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ backgroundColor: `${color}12` }}>
+                    <Icon size={16} style={{ color }} />
+                  </div>
+                  <span className="text-xs sm:text-sm font-medium" style={{ color: 'var(--text-secondary)' }}>{label}</span>
+                </div>
+              ))}
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -1045,6 +1050,9 @@ export default function HomePage() {
           </div>
         </ScaleIn>
       </section>
+
+      {/* ── Chat Widget ─────────────────────────── */}
+      <ChatWidget />
     </div>
   )
 }
